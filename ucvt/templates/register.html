@@ -1,0 +1,15 @@
+{% extends 'main.html' %}
+
+
+{% block login %}
+    <div class="large-offset-3 large-6 columns">
+        <form action="/register/" method="post">
+            {% csrf_token %}
+            {{ form }}
+
+            <div id="kekus">{{ zorro.as_p }}</div>
+
+            <input class="button" type="submit" value="Зарегистрироваться">
+        </form>
+    </div>
+{% endblock %}

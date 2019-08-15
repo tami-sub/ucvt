@@ -1,0 +1,41 @@
+{% extends 'main.html' %}
+{% block text %}
+    <div id = "home">
+
+
+        {% if uppermanagers %}
+            <h3>Ваши полномочия</h3>
+            <ul id="upper-managers-home">
+            <li><a href="/partners/">Партнёры</a></li>
+            <li><a href="/customers/">Клиенты</a></li>
+            <li><a href="/admin/">Панель редактирования</a></li>
+            </ul>
+        {% endif %}
+
+        {% if managers %}
+            <h3>Ваши полномочия</h3>
+            managers
+            <a href="/partners/">Партнёры</a>
+            <a href="/customers/">Клиенты</a>
+        {% endif %}
+
+
+        {% if partners %}
+            <h3>Ваши полномочия</h3>
+            partners
+            <a href="/addclient/">Добавить клиента</a>
+        {% endif %}
+
+        {% if void %}
+
+
+        <h2>Здравствуйте, вы попали на сайт Академии </h2>
+        <div id="login-block">
+            <p><a href="/login/" id="login" >ВХОД в систему</a></p>
+            <p><a href = "/register/" id="register">Регистрация</a></p>
+        </div>
+        {% endif %}
+
+
+    </div>
+{% endblock %}

@@ -1,0 +1,59 @@
+{% extends 'main.html' %}
+{% block text %}
+
+        {% if all_managers %}
+
+            <table class="customer-table">
+                <caption><h1>Клиенты</h1></caption>
+                <tr>
+                    <td><a href="/customers/0/">▼</a>Дата регистрации<a href="/customers/1/">▲</a></td>
+                    <td><a href="/customers/10/">▼</a>Фамилия<a href="/customers/11/">▲</a></td>
+                    <td><a href="/customers/20/">▼</a>Имя<a href="/customers/21/">▲</a></td>
+                    <td><a href="/customers/30/">▼</a>Отчество<a href="/customers/31/">▲</a></td>
+                    <td><a href="/customers/40/">▼</a>Вид Информ-ния<a href="/customers/41/">▲</a></td>
+                    <td><a href="/customers/50/">▼</a>Форма контакта с Академией<a href="/customers/51/">▲</a></td>
+                    <td>Комментарии</td>
+                    <td><a href="/customers/60/">▼</a>Факт контакта с Академией<a href="/customers/61/">▲</a></td>
+                    <td><a href="/customers/70/">▼</a>Факт заключения Договора<a href="/customers/71/">▲</a></td>
+                    <td><a href="/customers/80/">▼</a>Факт оплаты (когда)<a href="/customers/81/">▲</a></td>
+                    <td><a href="/customers/90/">▼</a>Факт оплаты (куда)<a href="/customers/91/">▲</a></td>
+                    <td><a href="/customers/100/">▼</a>Факт оплаты (сколько)<a href="/customers/101/">▲</a></td>
+                </tr>
+
+                    {% for i in customers %}
+                        <tr {% if i.customer_remove %} style="background: brown" {% endif %}>
+                            <td>{{ i.customer_register_date }}</td>
+                            <td>{{ i.customer_surname }}</td> <td>{{ i.customer_name }}</td>
+                            <td>{{ i.customer_patronymic }}</td> <td>{{ i.customer_got_info }}</td>
+                            <td>{{ i.customer_form_academy }}</td>
+                            <td><textarea disabled>{{ i.customer_about_comments }}</textarea></td>
+                            <td><a href="/customer_contact_fact_academy/{{ i.id }}">{{ i.customer_contact_fact_academy }}</a></td>
+                            <td><a href="/customer_contract_fact/{{ i.id }}">{{ i.customer_contract_fact }}</a></td>
+
+                            <td>{{ i.customer_payment_fact_when }}
+                                <form action="/customer_payment_fact_when/{{ i.id }}/" method="post">{% csrf_token %}
+                                    <input type="date" name="customer_payment_fact_when" maxlength="100" required="">
+                                    <input class="button" type="submit" value="Обновить данные">
+                                </form>
+                            </td>
+
+                            <td>{{ i.customer_payment_fact_where }}
+                                <form action="/customer_payment_fact_where/{{ i.id }}/" method="post">{% csrf_token %}
+                                    <input type="text" name="customer_payment_fact_where" maxlength="100" required="">
+                                    <input class="button" type="submit" value="Обновить данные">
+                                </form>
+                            </td>
+
+                            <td>{{ i.customer_payment_fact_how_much }}
+                                <form action="/customer_payment_fact_how_much/{{ i.id }}/" method="post">{% csrf_token %}
+                                    <input type="number" name="customer_payment_fact_how_much" maxlength="100" required="">
+                                    <input class="button" type="submit" value="Обновить данные">
+                                </form>
+                            </td>
+                        </tr>
+                    {% endfor %}
+
+            </table>
+        {% endif %}
+
+{% endblock %}

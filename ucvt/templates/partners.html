@@ -1,0 +1,45 @@
+{% extends 'main.html' %}
+{% block text %}
+
+
+        {% if all_managers %}
+
+        <table class="customer-table">
+            <tr>
+                <td>УДАЛИТЬ</td>
+                <td>Status</td>
+                <td>ОДОБРИТЬ</td>
+                <td>Логин</td>
+                <td>|</td>
+                <td>Фамилия</td>
+                <td>Имя</td>
+                <td>Отчество</td>
+                <td>Почта</td>
+                <td>Номер телефона</td>
+                <td>Откуда узнали о программе</td>
+            </tr>
+            {% for i in partners %}
+                <tr>
+                    <td><a href="/partners_remove/{{ i.partner_user_id }}">Удалить</a></td>
+
+                    <td>{{ i.partner_status }}</td>
+
+                    <td><a href="/partners/{{ i.partner_user_id }}">Одобрить</a> </td>
+                    <td>{{ i.partner_user }}</td>
+                    <td>|</td>
+                    <td>{{ i.partner_surname }}</td>
+                    <td>{{ i.partner_name }}</td>
+                    <td>{{ i.partner_patronymic }}</td>
+                    <td>{{ i.partner_email }}</td>
+                    <td>{{ i.partner_number }}</td>
+                    <td><textarea disabled>{{ i.partner_free_info }}</textarea></td>
+                </tr>
+            {% endfor %}
+        </table>
+
+        {% endif %}
+
+
+{% endblock %}
+
+

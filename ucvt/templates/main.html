@@ -1,0 +1,26 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Django</title>
+    <link rel="stylesheet" type="text/css" href="{% static "/static/css/style.css" %}">
+</head>
+<body>
+<section>
+    <ul>
+        {% if username %}
+            <li><a href="/logout/">Выйти ({{ username }}) </a></li>
+        {% else %}
+            <li><a href="/login/">Войти</a></li>
+        {% endif %}
+    </ul>
+</section>
+
+{#<h1><a href="/">Мой блог</a></h1>#}
+<div id="inside">
+{% block text %}{% endblock %}
+{% block login %} {% endblock %}
+</div>
+</body>
+</html>

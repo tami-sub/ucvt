@@ -1,0 +1,30 @@
+{% extends 'main.html' %}
+
+{% block text %}
+
+{#    {% if uppermanagers %}#}
+{#        <p><a href="/choice/0/">НОЛЬ</a> <a href="/choice/1/">ОДИН</a></p>#}
+{#    {% endif %}#}
+
+
+    <form action="/dialog/" method="post">
+     {% csrf_token %}
+        {{ message.as_p }}
+        <input type="submit">
+    </form>
+
+
+    {% for i in from %}
+        <p>{% if i.message_from %}{{ i.message_from }}{% endif %} {% if i.message_from_back %}{{ i.message_from_back }}{% endif %} ||said:  {{ i.message_text }} || to: {% if i.message_to %}{{ i.message_to }}{% endif %} {% if i.message_to_back %}{{ i.message_to_back }}{% endif %} ||||||||||||| {{ i.message_date }}</p>
+    {% endfor %}
+
+
+
+<hr>
+
+    {% for i in to %}
+        <p><a href="/dialog/{{ i.id }}/">Выбрать</a> {{ i }}</p>
+    {% endfor %}
+
+
+{% endblock %}

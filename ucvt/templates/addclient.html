@@ -1,0 +1,35 @@
+{% extends 'main.html' %}
+{% block text %}
+<div class="large-offset-3 large-6 columns">
+
+        <form action="/addclient/" method="post" id="add-client">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input class="button" type="submit" value="Добавить">
+        </form>
+
+
+<form action="/status/" method="post">
+<table class="customer-table">
+    <tr>
+        <td>УДАЛИТЬ</td> <td>Фамилия</td> <td>Имя</td> <td>Отчество</td>
+        <td>Факт контакта с Академией</td>
+        <td>Факт заключения Договора</td>
+        <td>Факт оплаты (когда)</td>
+        <td>Факт оплаты (где)</td>
+        <td>Факт оплаты (сколько)</td>
+    </tr>
+    {% for i in oga %}
+        <tr>
+            <td><a href="/status/{{ i.id }}/">Удалить</a></td>
+                <td>{{ i.customer_surname }}</td> <td>{{ i.customer_name }}</td> <td>{{ i.customer_patronymic }}</td>
+                <td>{{ i.customer_contact_fact_academy }}</td> <td>{{ i.customer_contract_fact }}</td>
+                <td>{{ i.customer_payment_fact_when }}</td> <td>{{ i.customer_payment_fact_where }}</td>
+                <td>{{ i.customer_payment_fact_how_much }}</td>
+
+        </tr>
+    {% endfor %}
+</table>
+</form>
+</div>
+{% endblock %}
